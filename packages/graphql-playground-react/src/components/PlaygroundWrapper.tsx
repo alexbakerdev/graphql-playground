@@ -25,6 +25,7 @@ import { getTheme, getSettings } from '../state/workspace/reducers'
 import { Session, Tab } from '../state/sessions/reducers'
 import { ApolloLink } from 'apollo-link'
 import { injectTabs } from '../state/workspace/actions'
+import { setDemoMode } from '../state/general/actions'
 import { buildSchema, buildClientSchema, GraphQLSchema } from 'graphql'
 
 function getParameterByName(name: string, uri?: string): string | null {
@@ -49,6 +50,7 @@ export interface PlaygroundWrapperProps {
   folderName?: string
   configString?: string
   showNewWorkspace?: boolean
+  isDemoMode?: boolean
   isElectron?: boolean
   canSaveConfig?: boolean
   onSaveConfig?: (configString: string) => void
@@ -73,6 +75,7 @@ export interface PlaygroundWrapperProps {
 export interface ReduxProps {
   theme: string
   injectTabs: (tabs: Tab[]) => void
+  setDemoMode: (value: boolean) => void
 }
 
 export interface State {
@@ -200,6 +203,9 @@ class PlaygroundWrapper extends React.Component<
   }
 
   componentWillReceiveProps(nextProps: PlaygroundWrapperProps & ReduxProps) {
+    if (nextProps.isDemoMode !== this.props.isDemoMode) {
+      this.props.setDemoMode(nextProps.isDemoMode || false)
+    }
     // Reactive props (props that cause a state change upon being changed)
     if (
       nextProps.endpoint !== this.props.endpoint ||
@@ -258,6 +264,9 @@ class PlaygroundWrapper extends React.Component<
 
   componentWillMount() {
     const platformToken = getParameterByName('platform-token')
+    if (this.props.isDemoMode) {
+      this.props.setDemoMode(this.props.isDemoMode)
+    }
     if (platformToken && platformToken.length > 0) {
       localStorage.setItem('platform-token', platformToken)
       window.location.replace(window.location.origin + window.location.pathname)
@@ -536,7 +545,7 @@ const mapStateToProps = (state, ownProps) => {
 
 export default connect(
   mapStateToProps,
-  { injectTabs },
+  { injectTabs, setDemoMode },
 )(PlaygroundWrapper)
 
 async function find(

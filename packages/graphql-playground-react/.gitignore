@@ -17,7 +17,6 @@ example/yarn.lock
 .env
 npm-debug.log
 .idea
-lib
 /middleware
 playground.css
 /middleware-build

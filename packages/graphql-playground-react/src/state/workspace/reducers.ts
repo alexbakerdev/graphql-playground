@@ -125,6 +125,7 @@ export const rootReducer = (state = new RootState(), action) => {
     OPEN_HISTORY: true,
     CLOSE_HISTORY: true,
     SET_ENDPOINT_DISABLED: true,
+    SET_DEMO_MODE: true,
     SET_CONFIG_STRING: true,
   }
 

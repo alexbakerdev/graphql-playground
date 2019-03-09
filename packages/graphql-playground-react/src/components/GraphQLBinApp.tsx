@@ -134,6 +134,7 @@ class GraphQLBinApp extends React.Component<Props & ReduxProps, State> {
           <PlaygroundWrapper
             endpoint={endpoint}
             headers={this.state.headers}
+            isDemoMode={true}
             subscriptionEndpoint={subscriptionEndpoint}
           />
         )}

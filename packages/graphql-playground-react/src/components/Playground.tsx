@@ -39,7 +39,7 @@ import {
   getEndpoint,
   getIsPollingSchema,
 } from '../state/sessions/selectors'
-import { getHistoryOpen } from '../state/general/selectors'
+import { getHistoryOpen, getIsDemoMode } from '../state/general/selectors'
 import {
   setLinkCreator,
   schemaFetcher,
@@ -63,6 +63,7 @@ export interface Props {
   sessionEndpoint: string
   subscriptionEndpoint?: string
   projectId?: string
+  isDemoMode?: boolean
   shareEnabled?: boolean
   fixedEndpoint?: boolean
   onSuccess?: (graphQLParams: any, response: any) => void
@@ -296,7 +297,9 @@ export class Playground extends React.PureComponent<Props & ReduxProps, State> {
 
     return (
       <PlaygroundContainer className="playground">
-        <TabBar onNewSession={this.createSession} isApp={this.props.isApp} />
+        {!this.props.isDemoMode && (
+          <TabBar onNewSession={this.createSession} isApp={this.props.isApp} />
+        )}
         <GraphiqlsContainer>
           <GraphiqlWrapper className="graphiql-wrapper active">
             {this.props.isConfigTab ? (
@@ -319,7 +322,7 @@ export class Playground extends React.PureComponent<Props & ReduxProps, State> {
             )}
           </GraphiqlWrapper>
         </GraphiqlsContainer>
-        <Settings />
+        {!this.props.isDemoMode && <Settings />}
         {this.props.historyOpen && this.renderHistoryPopup()}
       </PlaygroundContainer>
     )
@@ -396,6 +399,7 @@ const mapStateToProps = createStructuredSelector({
   isSettingsTab: getIsSettingsTab,
   isFile: getIsFile,
   historyOpen: getHistoryOpen,
+  isDemoMode: getIsDemoMode,
   file: getFile,
   sessionHeaders: getHeaders,
   settings: getSettings,

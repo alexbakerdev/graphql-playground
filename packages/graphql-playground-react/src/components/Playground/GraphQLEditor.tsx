@@ -50,6 +50,7 @@ import {
   getHeadersCount,
   getSelectedSessionIdFromRoot,
 } from '../../state/sessions/selectors'
+import { getIsDemoMode } from '../../state/general/selectors'
 import {
   updateQueryFacts,
   stopQuery,
@@ -74,6 +75,7 @@ import { ResponseRecord } from '../../state/sessions/reducers'
 
 export interface Props {
   onRef?: any
+  isDemoMode?: boolean
   shareEnabled?: boolean
   fixedEndpoint?: boolean
   schema?: GraphQLSchema
@@ -169,10 +171,12 @@ class GraphQLEditor extends React.PureComponent<Props & ReduxProps> {
     return (
       <Container setRef={this.setContainerComponent}>
         <EditorWrapper>
-          <TopBar
-            shareEnabled={this.props.shareEnabled}
-            fixedEndpoint={this.props.fixedEndpoint}
-          />
+          {!this.props.isDemoMode && (
+            <TopBar
+              shareEnabled={this.props.shareEnabled}
+              fixedEndpoint={this.props.fixedEndpoint}
+            />
+          )}
           <EditorBar
             ref={this.setEditorBarComponent}
             onMouseDown={this.handleResizeStart}
@@ -584,6 +588,7 @@ const mapStateToProps = createStructuredSelector({
   headers: getHeaders,
   operations: getOperations,
   operationName: getOperationName,
+  isDemoMode: getIsDemoMode,
   headersCount: getHeadersCount,
   sessionId: getSelectedSessionIdFromRoot,
 })
