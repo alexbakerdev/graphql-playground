@@ -153,7 +153,7 @@
     "reselect": "^3.0.1",
     "seamless-immutable": "^7.0.1",
     "styled-components": "^4.0.0",
-    "subscriptions-transport-ws": "^0.9.5",
+    "subscriptions-transport-ws": "0.9.9",
     "utility-types": "^1.0.0",
     "webpack-bundle-analyzer": "^2.9.2",
     "zen-observable": "^0.7.1"

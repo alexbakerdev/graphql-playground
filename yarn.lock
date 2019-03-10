@@ -7819,9 +7819,10 @@ stylis@^3.5.0:
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/stylis/-/stylis-3.5.0.tgz#016fa239663d77f868fef5b67cf201c4b7c701e1"
 
-subscriptions-transport-ws@^0.9.5:
+subscriptions-transport-ws@0.9.9:
   version "0.9.9"
   resolved "https://registry.yarnpkg.com/subscriptions-transport-ws/-/subscriptions-transport-ws-0.9.9.tgz#8a0bdc4c31df2e90e92901047fd8961deb138acc"
+  integrity sha512-x41ANayYJWBEPdH+0VS9QRT4tJpGs5WUJjGNnIdRVYDNyAuwm6QPMTnZtg8A8+HVMCWiBVaRmWbTJzMJVHk+jw==
   dependencies:
     backo2 "^1.0.2"
     eventemitter3 "^2.0.3"
