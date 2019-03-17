@@ -19,7 +19,7 @@
     "start:analyze": "ANALYZE_BUNDLE=true node scripts/start.js",
     "start:graphql-bin": "ACTIVE_APP=graphqlbin node scripts/start.js",
     "prepublishOnly": "yarn build",
-    "build": "yarn run prettier --single-quote --no-semi --write && yarn run tslint --project . && rimraf lib build/dist && npm run tsc && babel lib -d lib && cp -r ./src/assets/ ./lib/assets/ && cd lib && rimraf *.jsx;",
+    "build": "rimraf lib build/dist && npm run tsc && babel lib -d lib && cp -r ./src/assets/ ./lib/assets/ && cd lib && rimraf *.jsx;",
     "tsc": "tsc -p tsconfig.build.json",
     "build-app": "node scripts/build.js",
     "test": "jest",

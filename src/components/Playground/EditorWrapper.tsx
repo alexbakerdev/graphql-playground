@@ -643,33 +643,6 @@ const EditorWrapper = styled.div`
 // .CodeMirror-info info for types breaks stack trace
 // tslint:disable-next-line
 const GlobalStyle = createGlobalStyle`
-  *::-webkit-scrollbar {
-    -webkit-appearance: none;
-    width: 7px;
-    height: 7px;
-  }
-  *::-webkit-scrollbar-track-piece {
-    background-color: rgba(255, 255, 255, 0);
-  }
-  *::-webkit-scrollbar-track {
-    background-color: inherit;
-  }
-  *::-webkit-scrollbar-thumb {
-    max-height: 100px;
-    border-radius: 3px;
-    background-color: rgba(1, 1, 1, 0.23);
-  }
-  *::-webkit-scrollbar-thumb:hover {
-    background-color: rgba(1, 1, 1, 0.35);
-  }
-  *::-webkit-scrollbar-thumb:active {
-    background-color: rgba(1, 1, 1, 0.48);
-  }
-  *::-webkit-scrollbar-corner {
-    background: rgba(0,0,0,0);
-  }
-
-
   .CodeMirror-lint-tooltip, .CodeMirror-info {
     background-color: white;
     border-radius: 4px 4px 4px 4px;
