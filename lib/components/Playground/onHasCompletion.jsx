@@ -33,7 +33,7 @@ function onHasCompletion(cm, data, onHintInformationRender) {
             // the positioning of the hint UI to accomodate.
             var top_1 = hintsUl_1.style.top;
             var bottom = '';
-            var cursorTop = cm.cursorCoords().top;
+            var cursorTop = cm.cursorCoords(true, 'local').top;
             if (parseInt(top_1, 10) < cursorTop) {
                 top_1 = '';
                 bottom = window.innerHeight - cursorTop + 3 + 'px';
@@ -64,13 +64,7 @@ function onHasCompletion(cm, data, onHintInformationRender) {
                 wrapper.appendChild(information);
                 wrapper.appendChild(deprecation);
             }
-            var wrapperHeight = wrapper.clientHeight;
-            var currentTop = parseFloat(String(top_1).replace('px', ''));
-            var newTop = currentTop;
-            if (wrapperHeight + currentTop > window.innerHeight) {
-                newTop = window.innerHeight - 40 - wrapperHeight;
-            }
-            wrapper.style.top = newTop + "px";
+            ;
             global.wrapper = wrapper;
             // When CodeMirror attempts to remove the hint UI, we detect that it was
             // removed from our wrapper and in turn remove the wrapper from the

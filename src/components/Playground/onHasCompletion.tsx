@@ -36,7 +36,7 @@ export default function onHasCompletion(cm, data, onHintInformationRender) {
       // the positioning of the hint UI to accomodate.
       let top = hintsUl.style.top
       let bottom = ''
-      const cursorTop = cm.cursorCoords().top
+      const cursorTop = cm.cursorCoords(true, 'local').top
       if (parseInt(top, 10) < cursorTop) {
         top = ''
         bottom = window.innerHeight - cursorTop + 3 + 'px'
@@ -71,14 +71,6 @@ export default function onHasCompletion(cm, data, onHintInformationRender) {
         wrapper.appendChild(deprecation)
       }
 
-      const wrapperHeight = wrapper.clientHeight
-      const currentTop = parseFloat(String(top).replace('px', ''))
-      let newTop = currentTop
-      if (wrapperHeight + currentTop > window.innerHeight) {
-        newTop = window.innerHeight - 40 - wrapperHeight
-      }
-
-      wrapper.style.top = `${newTop}px`
       ;(global as any).wrapper = wrapper
 
       // When CodeMirror attempts to remove the hint UI, we detect that it was
